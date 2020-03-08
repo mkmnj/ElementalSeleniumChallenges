@@ -11,6 +11,7 @@ namespace Tests
     {
         public IWebDriver driver;
         public string mainURL = "https://the-internet.herokuapp.com";
+        AddRemoveElements page;
 
         [TestInitialize]
         public void Setup()
@@ -25,7 +26,7 @@ namespace Tests
         [TestMethod]
         public void AddNoElements()
         {
-            AddRemoveElements page = new AddRemoveElements(driver);
+            page = new AddRemoveElements(driver);
 
             Assert.IsTrue(page.DeletedElementsShouldNotBeVisible());
         }
@@ -33,7 +34,7 @@ namespace Tests
         [TestMethod]
         public void AddOneElement()
         {
-            AddRemoveElements page = new AddRemoveElements(driver);
+            page = new AddRemoveElements(driver);
 
             page.ClickOnAddElementButton();
 
@@ -43,11 +44,32 @@ namespace Tests
         [TestMethod]
         public void DeleteOneElement()
         {
-            AddRemoveElements page = new AddRemoveElements(driver);
+            page = new AddRemoveElements(driver);
 
             page.ClickOnAddElementButton();
             page.ClickOnDeleteElementButton();
 
+            Assert.IsTrue(page.DeletedElementsShouldNotBeVisible());
+        }
+
+        [TestMethod]
+        public void AddMultipleElements()
+        {
+            page = new AddRemoveElements(driver);
+
+            page.ClickOnAddElementButton(3);
+
+            Assert.IsTrue(page.AddedElementsShouldBeVisible());
+        }
+
+        [TestMethod]
+        public void DeleteMultipleElements()
+        {
+            page = new AddRemoveElements(driver);
+
+            page.ClickOnAddElementButton(3);
+            page.DeleteAllButtons();
+            
             Assert.IsTrue(page.DeletedElementsShouldNotBeVisible());
         }
 

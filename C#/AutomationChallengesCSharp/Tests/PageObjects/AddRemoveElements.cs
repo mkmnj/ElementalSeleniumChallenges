@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using OpenQA.Selenium;
+using System.Threading;
 
 namespace Tests.PageObjects
 {
@@ -11,7 +12,7 @@ namespace Tests.PageObjects
 
         private IWebElement AddButton => driver.FindElement(By.XPath("//button[@onclick='addElement()']"));
         private List<IWebElement> DeleteButtonList => new List<IWebElement>(driver.FindElements(By.XPath("//button[@onclick='deleteElement()']")));
-        private int elementsToBeRemoved;
+        protected int elementsToBeRemoved { get; set; }
 
         public AddRemoveElements(IWebDriver driver)
         {
@@ -56,14 +57,36 @@ namespace Tests.PageObjects
             }
         }
 
+        public void DeleteAllButtons()
+        {
+            for (int i = elementsToBeRemoved - 1; i >= 0; i--)
+            {
+                DeleteButtonList[i].Click();
+            }
+
+            elementsToBeRemoved = DeleteButtonList.Count == 0 ? 0 : elementsToBeRemoved;
+        }
+
         public bool AddedElementShouldBeVisible()
         {
             return DeleteButtonList[0].Displayed;
         }
 
+        public bool AddedElementsShouldBeVisible()
+        {
+            bool everyElementVisible = false;
+
+            for (int i = 0; i < elementsToBeRemoved; i++)
+            {
+                everyElementVisible = DeleteButtonList[i].Displayed ? true : false;
+            }
+
+            return everyElementVisible;
+        }
+
         public bool DeletedElementsShouldNotBeVisible()
         {
-            return DeleteButtonList?.Count == 0;
+            return DeleteButtonList?.Count == 0 && elementsToBeRemoved == 0;
         }
     }
 }
