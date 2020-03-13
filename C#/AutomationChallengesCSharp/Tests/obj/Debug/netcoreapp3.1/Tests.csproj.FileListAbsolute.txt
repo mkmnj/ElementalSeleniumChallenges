@@ -91,3 +91,4 @@ C:\Users\Maik\Documents\Informatik\Testautomatisierung\AutomationChallenges\Elem
 C:\Users\Maik\Documents\Informatik\Testautomatisierung\AutomationChallenges\ElementalSeleniumChallenges\C#\AutomationChallengesCSharp\Tests\bin\Debug\netcoreapp3.1\Tests.pdb
 C:\Users\Maik\Documents\Informatik\Testautomatisierung\AutomationChallenges\ElementalSeleniumChallenges\C#\AutomationChallengesCSharp\Tests\obj\Debug\netcoreapp3.1\Tests.dll
 C:\Users\Maik\Documents\Informatik\Testautomatisierung\AutomationChallenges\ElementalSeleniumChallenges\C#\AutomationChallengesCSharp\Tests\obj\Debug\netcoreapp3.1\Tests.pdb
+C:\Users\Maik\Documents\Informatik\Testautomatisierung\AutomationChallenges\ElementalSeleniumChallenges\C#\AutomationChallengesCSharp\Tests\bin\Debug\netcoreapp3.1\NLog.dll
